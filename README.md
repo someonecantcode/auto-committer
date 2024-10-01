@@ -1,4 +1,7 @@
-# auto-committer
+<h3 align="center">auto-committer</h3>
+
+***
+![Static Badge](https://img.shields.io/badge/-JS-JS?style=flat&logo=JavaScript&logoColor=%23F7DF1E&labelColor=%23000000&color=%234f5250)
 
 ## tools:
 * postman
