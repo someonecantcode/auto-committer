@@ -7,20 +7,21 @@ def getDataSHA(fileName: str) -> str:
     for info in json.loads(data_REPO):
         if(info['name'] == fileName):
             return info['sha']
-def updateFile(data: str, API_KEY: str) -> requests.Response:
+def updateFile(data: str, msg: str, API_KEY: str) -> requests.Response:
     content = base64.b64encode(bytes(data, 'utf-8')).decode('utf-8')
     payload = {
     "name": "auto-committer",
     "full_name": "someonecantcode/auto-committer",
     "sha": getDataSHA("data"),
-    "message": "test update1",
+    "message": msg,
     "content": content
     }
     return requests.put('https://api.github.com/repos/someonecantcode/auto-committer/contents/data', auth=("someonecantcode", API_KEY), data=json.dumps(payload))
 
 API_KEY: str = os.getenv("API_KEY")
-msg: str = "day 2 of testing"
+content: str = "hmm ok"
+msg: str = "har2"
 
-r = updateFile(msg, API_KEY)
+r = updateFile(content, msg, API_KEY)
 # print(json.loads(r.content))
 # print(r.status_code)
