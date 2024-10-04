@@ -1,35 +1,26 @@
-import requests
-import base64
-import json
-import os
-from dotenv import load_dotenv, dotenv_values 
+import requests, base64, json, os
+from dotenv import load_dotenv
 load_dotenv()
 
-
-
-API_KEY = os.getenv("API_KEY")
-
-data = "hello world!"
-content = base64.b64encode(bytes(data, 'utf-8')).decode('utf-8')
-
-data_REPO = requests.get("https://api.github.com/repos/someonecantcode/auto-committer/contents").content
-data_SHA = ''
-for info in json.loads(data_REPO):
-    if(info['name'] == "data"):
-        data_SHA = info['sha']
-        break
-
-
-
-payload = {
+def getDataSHA(fileName: str) -> str:
+    data_REPO = requests.get("https://api.github.com/repos/someonecantcode/auto-committer/contents").content
+    for info in json.loads(data_REPO):
+        if(info['name'] == fileName):
+            return info['sha']
+def updateFile(data: str, API_KEY: str) -> requests.Response:
+    content = base64.b64encode(bytes(data, 'utf-8')).decode('utf-8')
+    payload = {
     "name": "auto-committer",
     "full_name": "someonecantcode/auto-committer",
-    "sha": data_SHA,
+    "sha": getDataSHA("data"),
     "message": "test update1",
     "content": content
-}
+    }
+    return requests.put('https://api.github.com/repos/someonecantcode/auto-committer/contents/data', auth=("someonecantcode", API_KEY), data=json.dumps(payload))
 
-r = requests.put('https://api.github.com/repos/someonecantcode/auto-committer/contents/data', auth=("someonecantcode", API_KEY), data=json.dumps(payload))
-# print(r.content)
-# print(r.json)
+API_KEY = os.getenv("API_KEY")
+msg = "day 2 of testing"
+
+r = updateFile(msg, API_KEY)
+# print(json.loads(r.content))
 # print(r.status_code)
