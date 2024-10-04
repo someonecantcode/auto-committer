@@ -18,8 +18,8 @@ def updateFile(data: str, API_KEY: str) -> requests.Response:
     }
     return requests.put('https://api.github.com/repos/someonecantcode/auto-committer/contents/data', auth=("someonecantcode", API_KEY), data=json.dumps(payload))
 
-API_KEY = os.getenv("API_KEY")
-msg = "day 2 of testing"
+API_KEY: str = os.getenv("API_KEY")
+msg: str = "day 2 of testing"
 
 r = updateFile(msg, API_KEY)
 # print(json.loads(r.content))
