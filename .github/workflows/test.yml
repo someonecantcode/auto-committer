@@ -1,0 +1,32 @@
+name: DailyPusher
+on:
+  # manual trigger for testing
+  workflow_dispatch:
+  # Schedule daily updates
+  schedule:
+    - cron: "0 1 * * *"
+  
+jobs:
+  run-python-script:
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+  
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Specify the Python version you need
+  
+      # Step 3: Install dependencies (optional, if you have any requirements)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r reqs.txt  
+  
+      # Step 4: Run your Python script
+      - name: Run Python script
+        run: |
+          python committer.py 
