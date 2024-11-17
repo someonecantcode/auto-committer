@@ -9,6 +9,7 @@
 ## tools:
 * postman
 * github rest api
+* python 
 
 ## purpose:
 wanna flex to your friends your cracked skills on github? <br/> say less with this
@@ -31,6 +32,8 @@ automatic committer that will continue your contribution streak, ✨ ***forever*
 ```
 * sha is obtained from GET https://api.github.com/repos/someonecantcode/auto-committer/contents
 * content is the string encoded in Base64
+
+you can test and play with its api in postman.
 
 ### set up env + github secrets
 
