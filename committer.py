@@ -18,8 +18,8 @@ def updateFile(data: str, msg: str, API_KEY: str) -> requests.Response:
     return requests.put('https://api.github.com/repos/someonecantcode/auto-committer/contents/data', auth=("someonecantcode", API_KEY), data=json.dumps(payload))
 
 random.seed(time.time())
-API_KEY: str = os.environ("API_KEY")
-content: str =  os.environ("ORIGINAL_MSG") +"\n" + str(random.random()) 
+API_KEY: str = os.environ["API_KEY"]
+content: str =  os.environ["ORIGINAL_MSG"] +"\n" + str(random.random()) 
 msg: str = "hip hip horay"
 
 r = updateFile(content, msg, API_KEY)
