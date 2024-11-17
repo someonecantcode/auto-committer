@@ -10,11 +10,11 @@ jobs:
   run-python-script:
       runs-on: ubuntu-latest
 
-      steps:
       env:
         API_KEY: ${{ secrets.API_KEY }}
         ORIGINAL_MSG: ${{ secrets.ORIGINAL_MSG }}
 
+      steps:
       - name: Checkout repository
         uses: actions/checkout@v3
   
