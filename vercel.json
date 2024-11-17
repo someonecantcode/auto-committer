@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/committer",
-      "schedule": "0 1 * * *"
-    }
-  ]
-}
